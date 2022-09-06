@@ -1,16 +1,30 @@
 <script>
     //PROBLEMA: Valor da hora trabalhada
-    //Peça para o programa perguntar ao usuário quanto recebe por hora trabalhada. Também peça para informar qual o cargo que ocupa.
+    //Peça para o programa perguntar ao usuário quantas horas trabalha e quanto recebe por hora trabalhada. Também peça para informar qual o cargo que ocupa.
     //Se o usuário ocupar o cargo de "Programador", e trabalhar até 40 horas (inclusive), não haverá adicional. Contudo, se o cargo for "Programador" e trabalhar mais de 40 horas, receberá 20% de adicional no salário.
     //Se o usuário ocupar o cargo de "Analista", e trabalhar até 40 horas (inclusive), não haverá adicional. Contudo, se o cargo for "Analista", e trabalhar mais de 40 horas, receberá 25% de adicional no salário.
     //Apresente em tela o cargo do usuário e também o valor final recebido pelas horas trabalhadas.
 
     //ENTRADA
-
-
+    const horasTrabalha = Number(prompt("Informe quantas horas trabalha na semana:"));
+    const recebePorHora = Number(prompt("Informe quanto recebe por hora trabalhada:"));
+    const cargoOcupado = prompt("Informe o cargo que ocupa (P-Programador | A-Analista):");
+    
     //PROCESSAMENTO
+    let percAdicional;
+    if (cargoOcupado === "P" && horasTrabalha <= 40) { percAdicional = 0; }
+    else if (cargoOcupado === "P" && horasTrabalha > 40) { percAdicional = 20; }
+    else if (cargoOcupado === "A" && horasTrabalha <= 40) { percAdicional = 0; }
+    else { percAdicional = 25; }
 
-
+    const salarioSemanal = horasTrabalha * recebePorHora;
+    const adicionalSemana = salarioSemanal * percAdicional / 100;
+    const salarioFinal = salarioSemanal + adicionalSemana;
+    
     //SAÍDA
+    let nomeCargo;
+    if (cargoOcupado === "P") { nomeCargo = "Programador"; }
+    else { nomeCargo = "Analista"; }
 
+    document.write(`O cargo do profissional é ${nomeCargo} e o Salário Final será de ${salarioFinal.toFixed(2)}`);
 </script>
